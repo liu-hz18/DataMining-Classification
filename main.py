@@ -7,7 +7,7 @@ from sklearn.ensemble import BaggingClassifier
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
-from sklearn.metrics import accuracy_score, roc_auc_score, f1_score
+from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score
 
 def SVMModel():
 	return svm.SVC(probability=True, random_state=42)
@@ -31,7 +31,7 @@ def LightgbmModel():
 	return LGBMClassifier(random_state=42)
 
 def MetricFunc(label, pred):
-	return {'Accuracy': accuracy_score(label, pred), 'AUC': roc_auc_score(label, pred), 'F1 Score':f1_score(label, pred)}
+	return {'Accuracy': accuracy_score(label, pred), 'AUC': roc_auc_score(label, pred), 'precision':precision_score(label, pred), 'recall':recall_score(label, pred), 'F1 Score':f1_score(label, pred)}
 
 def SklearnMain(train_data, test_data):
 	ModelDict = {'SVM': SVMModel, 'DT': DecisionTreeModel, 'LR': LogisticRegressionModel, 'RS': RandomSubspaceModel, 'RF': RandomForestModel, 'XGBoost': XGBoostModel, 'Lightgbm': LightgbmModel}
