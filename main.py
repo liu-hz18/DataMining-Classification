@@ -31,7 +31,7 @@ def LightgbmModel():
 	return LGBMClassifier(random_state=42)
 
 def MetricFunc(label, pred):
-	return {'Accuracy': accuracy_score(label, pred), 'AUC': roc_auc_score(label, pred), 'precision':precision_score(label, pred), 'recall':recall_score(label, pred), 'F1 Score':f1_score(label, pred)}
+	return {'Accuracy': accuracy_score(label, pred), 'AUC': roc_auc_score(label, pred), 'Precision':precision_score(label, pred), 'Recall':recall_score(label, pred), 'F1 Score':f1_score(label, pred)}
 
 def SklearnMain(train_data, test_data):
 	ModelDict = {'SVM': SVMModel, 'DT': DecisionTreeModel, 'LR': LogisticRegressionModel, 'RS': RandomSubspaceModel, 'RF': RandomForestModel, 'XGBoost': XGBoostModel, 'Lightgbm': LightgbmModel}
