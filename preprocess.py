@@ -65,6 +65,18 @@ test_json = {
 	'label': (test_data.values[:,-1] >= 1400).tolist()
 }
 
+urls = {
+	'train': {
+		'url': train_data.values[:,0].tolist(), 
+		'label': (train_data.values[:,-1] >= 1400).tolist()
+	},
+	'test': {
+		'url': test_data.values[:,0].tolist(), 
+		'label': (test_data.values[:,-1] >= 1400).tolist()
+	}
+}
+
 # Save into json files
 json.dump(train_json, open(processed_path + 'train.json', 'w'))
 json.dump(test_json, open(processed_path + 'test.json', 'w'))
+json.dump(urls, open(processed_path + 'urls.json', 'w'))
