@@ -38,8 +38,8 @@ def MetricFunc(label, pred):
 	return {'Accuracy': accuracy_score(label, pred), 'AUC': roc_auc_score(label, pred), 'Precision':precision_score(label, pred), 'Recall':recall_score(label, pred), 'F1 Score':f1_score(label, pred)}
 
 def SklearnMain(train_data, test_data):
-	ModelDict = {'SVM': SVMModel, 'DT': DecisionTreeModel, 'LR': LogisticRegressionModel, 'RS': RandomSubspaceModel, 'RF': RandomForestModel, 'XGBoost': XGBoostModel, 'Lightgbm': LightgbmModel, 'KNN':KNearestNeighborsModel}
-	ModelDict = {'KNN':KNearestNeighborsModel}
+	ModelDict = {'KNN':KNearestNeighborsModel, 'SVM': SVMModel, 'DT': DecisionTreeModel, 'LR': LogisticRegressionModel, 'RS': RandomSubspaceModel, 'RF': RandomForestModel, 'XGBoost': XGBoostModel, 'Lightgbm': LightgbmModel}
+	# ModelDict = {'KNN':KNearestNeighborsModel}
 	for model_name in ModelDict.keys():
 		model = ModelDict[model_name]()
 		model.fit(train_data['data'], train_data['label'])
