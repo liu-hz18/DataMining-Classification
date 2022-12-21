@@ -31,14 +31,16 @@ print(weekday_is)
 print(data_channel_is)
 
 for index, row in original_data.iterrows():
-	w, d = 'sunday', 'orthers'
-	for _ in weekday_is:
+	w, d = -1, -1
+	for i, _ in enumerate(weekday_is):
 		if row[_] > 0:
-			w = _.split('_')[-1]
+			# w = _.split('_')[-1]
+			w = i
 			break
-	for _ in data_channel_is:
+	for i, _ in enumerate(data_channel_is):
 		if row[_] > 0:
-			d = _.split('_')[-1]
+			# d = _.split('_')[-1]
+			d = i
 			break
 	original_data.loc[index, ' weekday'] = w
 	original_data.loc[index, ' data_channel'] = d
