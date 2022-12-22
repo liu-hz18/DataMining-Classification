@@ -11,6 +11,7 @@ from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
 from models.mlp import MultiLayerPerceptronClassifier
 from models.LR import myLRModel
+from models.SVM import mySVMModel
 from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score
 
 def SVMModel():
@@ -46,6 +47,9 @@ def MultiLayerPerceptronModel():
 def MyLRModel():
 	return myLRModel(random_state=42)
 
+def MySVMModel():
+	return mySVMModel(random_state=42)
+
 def Norm(train_data, test_data):
 	N = len(train_data[0])
 	mx, mn = [-1e9 for _ in range(N)], [1e9 for _ in range(N)]
@@ -68,7 +72,8 @@ def MetricFunc(label, pred):
 def SklearnMain(train_data, test_data):
 	ModelDict = {'KNN':KNearestNeighborsModel, 'SVM': SVMModel, 'DT': DecisionTreeModel, 'LR': LogisticRegressionModel, 'Linear':LinearRegressionModel, 'RS': RandomSubspaceModel, 'RF': RandomForestModel, 'XGBoost': XGBoostModel, 'Lightgbm': LightgbmModel, 'MLP':MultiLayerPerceptronModel}
 	ModelDict = {'myLR': MyLRModel}
-	need_norm = ['SVM', 'LR', 'MLP', 'KNN', 'Linear']
+	ModelDict = {'mySVM': MySVMModel}
+	need_norm = ['SVM', 'LR', 'MLP', 'KNN', 'Linear', 'myLR', 'mySVM']
 	norm_train_data, norm_test_data = Norm(train_data['data'], test_data['data'])
 	for model_name in ModelDict.keys():
 		model = ModelDict[model_name]()

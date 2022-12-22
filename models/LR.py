@@ -10,6 +10,9 @@ class myLRModel:
         self.lr = lr
         self.epoch = epoch
         self.threshhold = threshhold
+        torch.manual_seed(random_state)
+        torch.cuda.manual_seed_all(random_state)
+        np.random.seed(random_state)
         random.seed(random_state)
 
     def sigmoid(self, features):
