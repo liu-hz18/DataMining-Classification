@@ -12,6 +12,7 @@ col_names = original_data.columns
 print(col_names)
 
 # Drop data with error
+# print(original_data[original_data[' n_unique_tokens'] > 1].index),exit(0)
 original_data = original_data[original_data[' n_unique_tokens'] <= 1]  # 39644
 
 # Replace col with easy ones
@@ -48,7 +49,6 @@ original_data = original_data[new_col_names]
 col_names = original_data.columns
 print(col_names)
 
-
 # Split into train_data and test_data
 test_data = original_data.sample(8000, random_state=42)
 train_data = original_data[~original_data.index.isin(test_data.index)]
@@ -77,6 +77,8 @@ urls = {
 }
 
 # Save into json files
+train_idx, test_idx = train_data.index.values.tolist(), test_data.index.values.tolist()
+json.dump({'train':train_idx, 'test':test_idx}, open(processed_path + 'idx.json', 'w'))
 json.dump(train_json, open(processed_path + 'train.json', 'w'))
 json.dump(test_json, open(processed_path + 'test.json', 'w'))
 json.dump(urls, open(processed_path + 'urls.json', 'w'))
