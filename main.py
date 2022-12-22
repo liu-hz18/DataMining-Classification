@@ -9,7 +9,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
-from mlp import MultiLayerPerceptronClassifier
+from models.mlp import MultiLayerPerceptronClassifier
+from models.LR import myLRModel
 from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score
 
 def SVMModel():
@@ -42,6 +43,9 @@ def KNearestNeighborsModel():
 def MultiLayerPerceptronModel():
 	return MultiLayerPerceptronClassifier(random_state=42, lr=1e-4, h1=256, h2=64, epoch=2, batch_size=64)
 
+def MyLRModel():
+	return myLRModel(random_state=42)
+
 def Norm(train_data, test_data):
 	N = len(train_data[0])
 	mx, mn = [-1e9 for _ in range(N)], [1e9 for _ in range(N)]
@@ -63,7 +67,7 @@ def MetricFunc(label, pred):
 
 def SklearnMain(train_data, test_data):
 	ModelDict = {'KNN':KNearestNeighborsModel, 'SVM': SVMModel, 'DT': DecisionTreeModel, 'LR': LogisticRegressionModel, 'Linear':LinearRegressionModel, 'RS': RandomSubspaceModel, 'RF': RandomForestModel, 'XGBoost': XGBoostModel, 'Lightgbm': LightgbmModel, 'MLP':MultiLayerPerceptronModel}
-	ModelDict = {'Linear': LinearRegressionModel}
+	ModelDict = {'myLR': MyLRModel}
 	need_norm = ['SVM', 'LR', 'MLP', 'KNN', 'Linear']
 	norm_train_data, norm_test_data = Norm(train_data['data'], test_data['data'])
 	for model_name in ModelDict.keys():

@@ -49,10 +49,12 @@ Code for homework 1 of Data Mining.
 爬取新闻
 
 |  Model  |     Input     | Accuracy |  AUC  | Precision | Recall | F1 Score |
-| :-----: | :-----------: | :------: | :---: | :-------: | :----: | :------: |
+| :-----: | :------------: | :------: | :---: | :-------: | :----: | :------: |
 |  BERT  |     Title     |  52.61  | 50.15 |   52.70   | 97.13 |  68.33  |
-|  BERT  | Title+Content |  52.24  | 50.01 |   52.63   | 92.52 |  67.09  |
+|  BERT  | Title+Abstract |  52.24  | 50.01 |   52.63   | 92.52 |  67.09  |
+|  BERT  | Title+Content |   52.64  | 50.42 |   52.85   | 92.68 |  67.32  |
 | RoBERTa |     Title     |  52.53  | 49.93 |   52.59   | 99.29 |  68.76  |
-| RoBERTa | Title+Content |  52.96  | 52.10 |   54.20   | 68.53 |  68.96  |
+| RoBERTa | Title+Abstract |  52.96  | 52.10 |   54.20   | 68.53 |  68.96  |
+| RoBERTa | Title+Content |   52.96  | 52.10 |   54.20   | 68.53 |  68.96  |
 
 .

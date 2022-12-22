@@ -7,9 +7,12 @@ from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, reca
 def MetricFunc(label, pred):
 	return {'Accuracy': accuracy_score(label, pred), 'AUC': roc_auc_score(label, pred), 'Precision':precision_score(label, pred), 'Recall':recall_score(label, pred), 'F1 Score':f1_score(label, pred)}
 
-max_length = 64
-batch_size = 64
-epoch = 4
+# max_length = 64
+# batch_size = 64
+# epoch = 4
+max_length = 512
+batch_size = 32
+epoch = 2
 lr = 1e-6
 pretrain_path = 'bert-base-uncased'
 # pretrain_path = 'roberta-base'
@@ -22,11 +25,11 @@ train_data = json.load(open('data/train_article.json', 'r'))
 test_data = json.load(open('data/test_article.json', 'r'))
 
 def tokenize(dataset, shuffle=False):
-    # sentences = ["[CLS] " + data['title'] + " [SEP] " + data['content'] + " [SEP]" for data in dataset['articles']]
-    sentences = []
-    for data in dataset['articles']:
-        content = data['content'].split()
-        sentences.append("[CLS] " + data['title'] + " [SEP] " + ' '.join(content[:20]) + " [SEP] " + ' '.join(content[-20:]) + " [SEP]")
+    sentences = ["[CLS] " + data['title'] + " [SEP] " + data['content'] + " [SEP]" for data in dataset['articles']]
+    # sentences = []
+    # for data in dataset['articles']:
+    #     content = data['content'].split()
+    #     sentences.append("[CLS] " + data['title'] + " [SEP] " + ' '.join(content[:20]) + " [SEP] " + ' '.join(content[-20:]) + " [SEP]")
     # sentences = ["[CLS] " + data['title'] + " [SEP]" for data in dataset['articles']]
     tokenized_texts = [tokenizer.tokenize(sentence) for sentence in sentences]
     print(tokenized_texts[0])
